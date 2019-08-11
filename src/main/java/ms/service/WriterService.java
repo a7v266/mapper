@@ -1,9 +1,15 @@
 package ms.service;
 
 import ms.model.Writer;
-import org.springframework.transaction.annotation.Transactional;
+import ms.service.query.QueryContext;
+
+import java.util.Iterator;
+import java.util.List;
+import java.util.function.Consumer;
 
 public interface WriterService {
-    @Transactional(readOnly = true)
-    Iterable<Writer> getWriters();
+
+    List<Writer> getWriters();
+
+    void scrollWriters(QueryContext context, Consumer<Iterator<?>> consumer);
 }
